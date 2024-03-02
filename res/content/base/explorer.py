@@ -18,7 +18,7 @@ class App(app):
     self.main_frame.grid_rowconfigure(1, weight=1)
 
     self.new_file_name = StringVar(self.main_frame, "document.txt", 'new_name')
-    self.current_path = StringVar(self.main_frame, name='current_path', value=Path.cwd())
+    self.current_path = StringVar(self.main_frame, name='current_path', value=f"{self.win.system_path}storage\\")
 
     self.current_path.trace('w', self.path_change)
 
