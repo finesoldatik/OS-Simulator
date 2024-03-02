@@ -1,5 +1,6 @@
 from tkinter import *
 class Tag:
+  """Ярлык."""
   def __init__(self, win, name, value, args):
     self.win = win
     self.name = name
@@ -7,6 +8,7 @@ class Tag:
     self.args = args
 
   def create(self):
+    """Создание ярлыка."""
     name = ""
     if len(self.name) > 16:
       for i in self.name:

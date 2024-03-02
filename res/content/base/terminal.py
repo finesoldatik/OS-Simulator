@@ -6,7 +6,7 @@ from res.modules.handlers import ProcessHandler
 
 class App(app):
   def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", name="Терминал")
+    super().__init__(win=win, main_func="main", title="Терминал")
     self.set_size(30.1, 23)
     self.output = ""
 

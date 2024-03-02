@@ -8,7 +8,7 @@ from res.modules.app import app
 
 class App(app):
   def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", name="Проводник")
+    super().__init__(win=win, main_func="main", title="Проводник")
     self.set_size(30, 19.8)
 
   def main(self):

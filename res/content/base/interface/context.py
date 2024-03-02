@@ -16,15 +16,10 @@ class Context:
     self.base_programs.add_command(label="Калькулятор", command=lambda: self.win.program_handler.start("base.calculator"))
     self.base_programs.add_command(label="Терминал", command=lambda: self.win.program_handler.start("base.terminal"))
 
-    # self.create.add_command(label="Папку", command=self.create_folder)
-    # self.create.add_command(label="Текстовый документ", command=self.create_document)
-    # self.create.add_command(label="Изображение", command=self.create_image)
-
     self.taskmenu.add_command(label="Скрыть", command=self.win.desktop.hide_taskbar)
-    self.taskmenu.add_command(label="Показать", command=self.win.desktop.view_taskbar)
+    self.taskmenu.add_command(label="Показать", command=self.win.desktop.show_taskbar)
 
     self.context.add_cascade(label="Открыть", menu=self.base_programs)
-    self.context.add_cascade(label="Создать", menu=self.create)
     self.context.add_cascade(label="Панель задач", menu=self.taskmenu)
     self.context.add_separator()
     self.context.add_command(label="Выйти", command=quit)

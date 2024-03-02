@@ -9,7 +9,7 @@ from res.modules.app import app
 
 class App(app):
   def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", name="Холст")
+    super().__init__(win=win, main_func="main", title="Холст")
     self.set_size(30, 16)
     self.brush_size = 10
     self.color = "black"

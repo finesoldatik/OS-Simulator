@@ -3,6 +3,7 @@ from tkinter import *
 from res.modules.handlers import ProcessHandler, ProgramHandler
 
 class Window(Tk):
+  """Создает окно симулятора."""
   def __init__(self, context, desktop, system_path):
     super().__init__()
     self.title("OS Simulator")
@@ -28,4 +29,6 @@ class Window(Tk):
     self.context = context(self)
     self.desktop.add_context()
 
-  def rgb(self, rgb): return "#%02x%02x%02x" % rgb
+  def rgb(self, rgb):
+    """Перевод RGB формата в HEX для работы с tkinter."""
+    return "#%02x%02x%02x" % rgb

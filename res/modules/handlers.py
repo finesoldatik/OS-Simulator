@@ -5,20 +5,23 @@ from tkinter import *
 
 
 class JsonHandler:
+  """Обработчик JSON."""
   def write(path:str, data:dict):
-    """Запись данных в json файл"""
+    """Запись данных в json файл."""
     with open(path, 'w', encoding='utf-8') as f:
       f.write(dumps(data, indent=4, ensure_ascii=False))
 
 
   def read(path:str) -> dict:
-    """Чтение данных из json файла"""
+    """Чтение данных из json файла."""
     with open(path, 'r', encoding='utf-8') as f:
       data = loads(f.read())
     return data
 
 class ProcessHandler:
+  """Обработчик Процессов."""
   def run_startup(win):
+    """Запуск стартовых процессов"""
     startup_processes = listdir("res\\startup_processes")
     for process in startup_processes:
       if process == "__pycache__":
@@ -42,7 +45,7 @@ class ProgramHandler:
     self.win = win
 
   def start(self, program_import_path:str, args:list=None) -> str:
-    """Запуск программы по её пути импорта"""
+    """Запуск программы по её пути импорта."""
     try:
       program = import_module(f"res.content.{program_import_path}")
       program = program.App(self.win, args)

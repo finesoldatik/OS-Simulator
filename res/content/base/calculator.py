@@ -5,7 +5,7 @@ from res.modules.app import app
 
 class App(app):
   def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", name="Калькулятор")
+    super().__init__(win=win, main_func="main", title="Калькулятор")
     self.set_size(30, 20.3)
     self.expression = ""
 

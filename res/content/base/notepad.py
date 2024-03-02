@@ -7,7 +7,7 @@ from res.modules.app import app
 
 class App(app):
   def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", name="Блокнот")
+    super().__init__(win=win, main_func="main", title="Блокнот")
     self.set_size(30, 17.5)
     self.filename = NONE
 
