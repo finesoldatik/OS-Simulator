@@ -50,10 +50,10 @@ class desktop:
     self.system_time = Label(self.taskbar, text='', bg='gray20', fg='white', font=self.win.font)
     self.system_time.grid(column=0, row=0)
 
-    self.programs = Listbox(self.taskbar, width=12, height=30, borderwidth=0, bg="gray25", fg="white", selectbackground="gray25", highlightbackground="gray25")
-    self.programs.grid(column=0, row=1, pady=1)
+    self.programslist = Listbox(self.taskbar, width=12, height=30, borderwidth=0, bg="gray25", fg="white", selectbackground="gray25", highlightbackground="gray25")
+    self.programslist.grid(column=0, row=1, pady=1)
 
-    self.programs.bind("<Button-1>", self.get_prog)
+    self.programslist.bind("<Button-1>", self.get_prog)
 
     self.time_update()
 

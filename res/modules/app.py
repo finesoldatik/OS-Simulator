@@ -8,7 +8,7 @@ class app(Frame):
 
   def exit(self):
     """Закрывает приложение."""
-    self.win.programs.delete(self.win.opened_programs.index(self))
+    self.win.programslist.delete(self.win.opened_programs.index(self))
     self.win.opened_programs.remove(self)
     self.destroy()
 

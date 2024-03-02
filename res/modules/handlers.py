@@ -39,10 +39,10 @@ class ProcessHandler:
     except: return "err! process not found!"
 
 class ProgramHandler:
-  def __init__(self, win, opened_programs, programs):
-    self.opened_programs = opened_programs
-    self.programs = programs
+  def __init__(self, win, opened_programs, programslist):
     self.win = win
+    self.opened_programs = opened_programs
+    self.programslist = programslist
 
   def start(self, program_import_path:str, args:list=None) -> str:
     """Запуск программы по её пути импорта."""
@@ -50,6 +50,6 @@ class ProgramHandler:
       program = import_module(f"res.content.{program_import_path}")
       program = program.App(self.win, args)
       self.opened_programs.append(program)
-      self.programs.insert(END, program.name["text"])
+      self.programslist.insert(END, program.name["text"])
       return "started!"
     except: return "err! program not found!"

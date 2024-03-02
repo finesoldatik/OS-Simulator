@@ -18,4 +18,4 @@ if __name__ == "__main__":
   except: print("\n----------------\t----------------\nerr! a package with that name was not found!\n----------------\t----------------\n")
   try: win.mainloop()
   except: pass
-  print("\nthe program is closed.\n")
+  print("\nthe simulator is closed.\n")

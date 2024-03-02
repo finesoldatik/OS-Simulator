@@ -8,6 +8,6 @@ class Desktop(desktop):
 
     self.add_wallpaper("\\storage\\Images\\Wallpapers\\wallpaper.jpg")
 
-    self.add_tags()
-
     self.add_taskbar()
+
+    self.add_tags()

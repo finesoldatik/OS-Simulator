@@ -24,10 +24,10 @@ class Window(Tk):
     ProcessHandler.run_startup(self)
 
     self.desktop = desktop(self)
-    self.programs = self.desktop.programs
-    self.program_handler = ProgramHandler(win=self, opened_programs=self.opened_programs, programs=self.programs)
     self.context = context(self)
     self.desktop.add_context()
+    self.programslist = self.desktop.programslist
+    self.program_handler = ProgramHandler(win=self, opened_programs=self.opened_programs, programslist=self.programslist)
 
   def rgb(self, rgb):
     """Перевод RGB формата в HEX для работы с tkinter."""
