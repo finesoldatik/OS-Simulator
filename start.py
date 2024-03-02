@@ -1,12 +1,14 @@
 from importlib import import_module
 from os.path import dirname
-from sys import argv
+from argparse import ArgumentParser
 
 from res.modules.window import Window
 
 if __name__ == "__main__":
-  if len(argv) > 1: name = argv[1]
-  else: name = "base"
+  parser = ArgumentParser()
+  parser.add_argument("-i", "--interface", dest="interface", type=str, help="The name of the interface that the program will run from.", default="base")
+  args = parser.parse_args()
+  name = args.interface
   print(f"\nlaunching with the \"{name}\" package.")
   try:
     context = import_module(f"res.content.{name}.interface.context")
