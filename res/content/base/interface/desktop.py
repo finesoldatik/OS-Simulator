@@ -3,15 +3,15 @@ from tkinter import *
 from PIL import Image, ImageTk
 
 from res.modules.tag import Tag
-from res.modules.json_handler import JsonHandler
+from res.modules.handlers import JsonHandler
 
 class Desktop:
   def __init__(self, win):
     self.win = win
     self.tags = JsonHandler.read("res\\tags.json")
-    self.tags_max_count = 7
+    self.tags_max = 7
 
-    wallpaper = self.wallpaper("storage/Images/Wallpapers\\wallpaper.jpg")
+    wallpaper = self.wallpaper("\\storage\\Images\\Wallpapers\\wallpaper.jpg")
     self.wall = Label(self.win, image=wallpaper)
     self.wall.image = wallpaper
     self.wall.place(x=-2, y=-2)
@@ -21,11 +21,11 @@ class Desktop:
     y = 10
     tags_count = 0
     for name in self.tags:
-      if tags_count / self.tags_max_count == 1:
+      if tags_count / self.tags_max == 1:
         x = 90
         y += 50
       tags_count += 1
-      tag = Tag(win=self.win, name=name, value=self.tags.get(name[0]), args=self.tags.get(name[1]))
+      tag = Tag(win=self.win, name=name, value=self.tags.get(name)[0], args=self.tags.get(name)[1])
       tag.create()
       tag.label.place(x=x, y=y)
       x += 130

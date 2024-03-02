@@ -1,0 +1,31 @@
+from tkinter import *
+
+from res.modules.handlers import ProcessHandler, ProgramHandler
+
+class Window(Tk):
+  def __init__(self, context, desktop, system_path):
+    super().__init__()
+    self.title("OS Simulator")
+    self.config(bg="gray10")
+    self.wm_attributes("-fullscreen", True)
+    self.screenwidth = self.winfo_screenwidth()
+    self.screenheight = self.winfo_screenheight()
+    self.opened_programs = []
+    self.system_path = system_path
+
+    # цвета
+    self.normal = self.rgb((234, 234, 234))
+
+    # шрифты
+    self.font = ('Consolas', 10, 'bold')
+
+    # запуск необходимых процессов для запуска
+    ProcessHandler.run_startup(self)
+
+    self.desktop = desktop(self)
+    self.programs = self.desktop.programs
+    self.program_handler = ProgramHandler(win=self, opened_programs=self.opened_programs, programs=self.programs)
+    self.context = context(self)
+    self.desktop.add_context()
+
+  def rgb(self, rgb): return "#%02x%02x%02x" % rgb
