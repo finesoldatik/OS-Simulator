@@ -12,9 +12,11 @@ class Tag:
     name = ""
     if len(self.name) > 16:
       for i in self.name:
-        if len(name) < 13: name += i
+        if len(name) < 13:
+          name += i
         else:
           name += "..."
           break
-    else: name = self.name
+    else:
+      name = self.name
     self.label = Button(master=self.win, text=name, font=self.win.font, width=16, command=lambda: self.win.program_handler.start(self.value, self.args))

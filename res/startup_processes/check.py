@@ -8,8 +8,11 @@ class Process:
     for file in files:
       text = ""
       if not exists(file):
-        if file.split(".")[1] == "json": text = "{}"
-        with open(file, "w") as f: f.write(text)
+        if file.split(".")[1] == "json":
+          text = "{}"
+        with open(file, "w") as f:
+          f.write(text)
 
     for folder in folders:
-      if not exists(folder): mkdir(folder)
+      if not exists(folder):
+        mkdir(folder)

@@ -6,9 +6,8 @@ from res.modules.app import app
 
 
 class App(app):
-  def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", title="Блокнот")
-    self.set_size(30, 17.5)
+  def __init__(self, win, position, args=[]):
+    super().__init__(win=win, position=position, title="Блокнот")
     self.filename = NONE
 
   def new_file(self):
@@ -23,8 +22,10 @@ class App(app):
   def save_as(self):
     out = asksaveasfile(mode='w', defaultextension='txt')
     data = self.text.get('1.0', END)
-    try: out.write(data.rstrip())
-    except Exception: showerror(title="Error", message="Saving file error")
+    try:
+      out.write(data.rstrip())
+    except Exception:
+      showerror(title="Error", message="Saving file error")
 
   def open_file(self):
     inp = askopenfile(mode="r")

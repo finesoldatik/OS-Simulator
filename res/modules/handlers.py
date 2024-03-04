@@ -3,7 +3,6 @@ from os import listdir
 from importlib import import_module
 from tkinter import *
 
-
 class JsonHandler:
   """Обработчик JSON."""
   def write(path:str, data:dict):
@@ -36,7 +35,8 @@ class ProcessHandler:
       process = import_module(process_import_path)
       process.Process(win)
       return "started!"
-    except: return "err! process not found!"
+    except:
+      return "err! process not found!"
 
 class ProgramHandler:
   def __init__(self, win, opened_programs, programslist):
@@ -44,12 +44,13 @@ class ProgramHandler:
     self.opened_programs = opened_programs
     self.programslist = programslist
 
-  def start(self, program_import_path:str, args:list=None) -> str:
+  def start(self, program_import_path:str, args:list=[], position=[CENTER, CENTER]) -> str:
     """Запуск программы по её пути импорта."""
     try:
-      program = import_module(f"res.content.{program_import_path}")
-      program = program.App(self.win, args)
-      self.opened_programs.append(program)
-      self.programslist.insert(END, program.name["text"])
+      program = import_module(f"res.content.{program_import_path}") # импортирует программу
+      program = program.App(win=self.win, args=args, position=position) # вызывает класс из импорта
+      self.opened_programs.append(program) # добавляет в список открытых программ
+      self.programslist.insert(END, program.title["text"]) # добавляет в листбокс с программами
       return "started!"
-    except: return "err! program not found!"
+    except:
+      return "err! program not found!"

@@ -7,9 +7,8 @@ from res.modules.app import app
 
 
 class App(app):
-  def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", title="Проводник")
-    self.set_size(30, 19.8)
+  def __init__(self, win, position, args=[]):
+    super().__init__(win=win, position=position, title="Проводник")
 
   def main(self):
     windll.shcore.SetProcessDpiAwareness(True)
@@ -43,14 +42,16 @@ class App(app):
     self.list.delete(0, END)
 
     for file in directory:
-        self.list.insert(0, file)
+      self.list.insert(0, file)
 
   def change_path_by_click(self, event=None):
     picked = self.list.get(self.list.curselection()[0])
     path_ = path.join(self.current_path.get(), picked)
 
-    if path.isfile(path_): startfile(path_)
-    else: self.current_path.set(path_)
+    if path.isfile(path_):
+      startfile(path_)
+    else:
+      self.current_path.set(path_)
 
   def go_back(self, event=None):
     new_path = Path(self.current_path.get()).parent
@@ -66,8 +67,10 @@ class App(app):
     Button(self.new_window, text="Закрыть", command=lambda: self.new_window.destroy()).grid(pady=10, sticky=NSEW)
 
   def new_file_or_folder(self):
-    if len(self.new_file_name.get().split('.')) != 1: open(path.join(self.current_path.get(), self.new_file_name.get()), 'w').close()
-    else: mkdir(path.join(self.current_path.get(), self.new_file_name.get()))
+    if len(self.new_file_name.get().split('.')) != 1:
+      open(path.join(self.current_path.get(), self.new_file_name.get()), 'w').close()
+    else:
+      mkdir(path.join(self.current_path.get(), self.new_file_name.get()))
 
     self.new_window.destroy()
     self.path_change()

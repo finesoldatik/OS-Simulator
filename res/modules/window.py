@@ -4,7 +4,7 @@ from res.modules.handlers import ProcessHandler, ProgramHandler
 
 class Window(Tk):
   """Создает окно симулятора."""
-  def __init__(self, context, desktop, system_path):
+  def __init__(self, context, desktop, system_path:str):
     super().__init__()
     self.title("OS Simulator")
     self.config(bg="gray10")
@@ -12,7 +12,8 @@ class Window(Tk):
     self.screenwidth = self.winfo_screenwidth()
     self.screenheight = self.winfo_screenheight()
     self.opened_programs = []
-    self.system_path = system_path
+    self.system_path:str = system_path
+    self.default_program_movement_type:bool = True
 
     # цвета
     self.normal = self.rgb((234, 234, 234))

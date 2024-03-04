@@ -6,13 +6,14 @@ from pygame import mixer
 from res.modules.app import app
 
 class App(app):
-  def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", title="Музыка")
-    self.set_size(30.1, 23)
+  def __init__(self, win, position, args=[]):
+    super().__init__(win=win, position=position, title="Музыка")
     self.args = args
-    if self.args == None: self.args = [win.system_path + "storage\\Music"]
     self.config(bg="gray20")
-    self.muspath = args[0]
+    if self.args == []:
+      self.muspath = win.system_path + "storage\\Music"
+    else:
+      self.muspath = args[0]
     self.pattern = '*.mp3'
 
     mixer.init()

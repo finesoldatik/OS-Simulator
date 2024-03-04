@@ -11,3 +11,5 @@ class Desktop(desktop):
     self.add_taskbar()
 
     self.add_tags()
+
+    # self.win.default_program_movement_type = False

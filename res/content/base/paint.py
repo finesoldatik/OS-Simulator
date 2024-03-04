@@ -8,9 +8,8 @@ from res.modules.app import app
 
 
 class App(app):
-  def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", title="Холст")
-    self.set_size(30, 16)
+  def __init__(self, win, position, args=[]):
+    super().__init__(win=win, position=position, title="Холст")
     self.brush_size = 10
     self.color = "black"
     self.x = 0
@@ -52,7 +51,6 @@ class App(app):
     Button(self.main_frame, text='Сохранить', width=10, command=self.save_img).grid(row=1, column=6)
 
   def draw(self, event):
-    print(self.x, self.y)
     x1, y1 = (event.x - self.brush_size), (event.y - self.brush_size)
     x2, y2 = (event.x + self.brush_size), (event.y + self.brush_size)
     self.canvas.create_oval(x1, y1, x2, y2, fill=self.color, width=0)

@@ -3,22 +3,25 @@ import tkVideoPlayer as vp
 
 from res.modules.app import app
 
-
 class App(app):
-  def __init__(self, win, args=None):
-    super().__init__(win=win, main_func="main", title="Видео")
-    self.set_size(30.1, 23)
+  def __init__(self, win, position, args=[]):
+    super().__init__(win=win, position=position, title="Видео")
     self.args = args
+    if self.args == []:
+      self.video = win.system_path + "storage\\Video\\1.mp4"
+    else:
+      self.video = args[0]
     self.config(bg="gray20")
+    print(self.video)
     
   def play(self):
-    self.video.play()
+    self.videoplayer.play()
 
   def pause(self):
-    self.video.pause()
+    self.videoplayer.pause()
 
   def stop(self):
-    self.video.stop()
+    self.videoplayer.stop()
 
   def main(self):
     VideoFrame = Frame(self, bg='gray20')
@@ -31,6 +34,6 @@ class App(app):
     Button(BtnsFrame, text='Pause', width=10, command=self.pause).grid(row=0, column=1)
     Button(BtnsFrame, text='Stop', width=10, command=self.stop).grid(row=0, column=2, padx=10, pady=10)
 
-    self.video = vp.TkinterVideo(VideoFrame, scaled=True)
-    self.video.load(self.event)
-    self.video.pack(ipadx=160, ipady=80, pady=10)
+    self.videoplayer = vp.TkinterVideo(VideoFrame, scaled=True)
+    self.videoplayer.load(self.video)
+    self.videoplayer.pack(ipadx=160, ipady=80, pady=10)
