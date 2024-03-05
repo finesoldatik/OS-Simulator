@@ -19,7 +19,7 @@ class App(app):
   
   def exit(self):
     """Закрывает приложение."""
-    self.sound.stop()
+    self.channel.stop()
     self.win.programslist.delete(self.win.opened_programs.index(self))
     self.win.opened_programs.remove(self)
     self.destroy()
