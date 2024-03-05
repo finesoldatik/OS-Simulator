@@ -5,15 +5,13 @@ from res.modules.app import app
 
 class App(app):
   def __init__(self, win, position, args=[]):
-    super().__init__(win=win, position=position, title="Видео")
     self.args = args
     if self.args == []:
       self.video = win.system_path + "storage\\Video\\1.mp4"
     else:
       self.video = args[0]
-    self.config(bg="gray20")
-    print(self.video)
-    
+    super().__init__(win=win, position=position, title="Видео")
+
   def play(self):
     self.videoplayer.play()
 
@@ -24,6 +22,7 @@ class App(app):
     self.videoplayer.stop()
 
   def main(self):
+    self.main_frame.config(bg="gray20")
     VideoFrame = Frame(self, bg='gray20')
     VideoFrame.pack()
 

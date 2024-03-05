@@ -17,6 +17,15 @@ class app(Frame):
     """Центрирует приложение."""
     self.place_forget()
     self.place(relx=0.5, rely=0.5, anchor=CENTER)
+  
+  def hide(self):
+    self.place_forget()
+  
+  def show(self):
+    try:
+      self.place(self.x, self.y)
+    except:
+      self.place(relx=0.5, rely=0.5, anchor=CENTER)
 
   def start(self, main_func:str, title:str = "Программа"):
     """Выводит приложение на экран. Необходима главная функция с базовым интерфейсом программы и её заголовок."""
@@ -33,6 +42,9 @@ class app(Frame):
 
     self.quitBtn = Button(self.top, text='X', bg='red', fg='white', font=self.win.font, border=0, width=3, command=self.exit)
     self.quitBtn.pack(side=RIGHT)
+
+    self.hideBtn = Button(self.top, text='-', bg='gray30', fg='white', font=self.win.font, border=0, width=3, command=self.hide)
+    self.hideBtn.pack(side=RIGHT)
 
     self.main_frame = Frame(self)
     self.main_frame.pack()

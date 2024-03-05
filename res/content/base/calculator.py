@@ -5,8 +5,8 @@ from res.modules.app import app
 
 class App(app):
   def __init__(self, win, position, args=[]):
-    super().__init__(win=win, position=position, title="Калькулятор")
     self.expression = ""
+    super().__init__(win=win, position=position, title="Калькулятор")
 
   def btn_click(self, item):
     try:

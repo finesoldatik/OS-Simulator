@@ -52,5 +52,6 @@ class ProgramHandler:
       self.opened_programs.append(program) # добавляет в список открытых программ
       self.programslist.insert(END, program.title["text"]) # добавляет в листбокс с программами
       return "started!"
-    except:
+    except Exception as ex:
+      print("err!", ex)
       return "err! program not found!"

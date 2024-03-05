@@ -6,8 +6,8 @@ from res.modules.handlers import ProcessHandler
 
 class App(app):
   def __init__(self, win, position, args=[]):
-    super().__init__(win=win, position=position, title="Терминал")
     self.output = ""
+    super().__init__(win=win, position=position, title="Терминал")
 
   def cmd(self, e):
     cmd = self.entry.get()

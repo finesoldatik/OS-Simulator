@@ -7,8 +7,8 @@ from res.modules.app import app
 
 class App(app):
   def __init__(self, win, position, args=[]):
-    super().__init__(win=win, position=position, title="Блокнот")
     self.filename = NONE
+    super().__init__(win=win, position=position, title="Блокнот")
 
   def new_file(self):
     self.filename = "Untitled"

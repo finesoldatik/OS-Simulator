@@ -9,11 +9,11 @@ from res.modules.app import app
 
 class App(app):
   def __init__(self, win, position, args=[]):
-    super().__init__(win=win, position=position, title="Холст")
     self.brush_size = 10
     self.color = "black"
     self.x = 0
     self.y = 0
+    super().__init__(win=win, position=position, title="Холст")
 
   def main(self):
     self.main_frame.columnconfigure(6, weight=1)
