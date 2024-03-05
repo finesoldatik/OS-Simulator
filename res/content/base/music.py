@@ -10,7 +10,7 @@ class App(app):
     self.args = args
     self.muspath = win.system_path + "storage\\Music"
     self.pattern = '*.mp3'
-    if self.args != []:
+    if len(self.args) >= 1:
       self.muspath = args[0]
     mixer.init()
     super().__init__(win=win, position=position, title="Музыка")
