@@ -23,11 +23,16 @@ class App(app):
     self.destroy()
 
   def select(self, event=None):
-    self.label.configure(text=self.listbox.get(ANCHOR))
-    mixer.music.load(f"{self.muspath}\\{self.listbox.get(ANCHOR)}")
+    try:
+      self.label.configure(text=self.listbox.get(ANCHOR))
+      mixer.music.load(f"{self.muspath}\\{self.listbox.get(ANCHOR)}")
+    except:
+      self.label.configure(text=self.listbox.get(0))
+      mixer.music.load(f"{self.muspath}\\{self.listbox.get(0)}")
     mixer.music.play()
     mixer.music.set_volume(1)
     self.volumeScale.set(1)
+    
 
   def stop(self):
     mixer.music.stop()
@@ -37,31 +42,33 @@ class App(app):
     next_song = self.listbox.curselection()
     next_song = next_song[0] + 1
     next_song_name = self.listbox.get(next_song)
-    self.label.configure(text=next_song_name)
+    if next_song_name != "":
+      self.label.configure(text=next_song_name)
 
-    mixer.music.load(f"{self.muspath}\\{next_song_name}")
-    mixer.music.play()
-    mixer.music.set_volume(1)
-    self.volumeScale.set(1)
+      mixer.music.load(f"{self.muspath}\\{next_song_name}")
+      mixer.music.play()
+      mixer.music.set_volume(1)
+      self.volumeScale.set(1)
 
-    self.listbox.select_clear(0, END)
-    self.listbox.activate(next_song)
-    self.listbox.select_set(next_song)
+      self.listbox.select_clear(0, END)
+      self.listbox.activate(next_song)
+      self.listbox.select_set(next_song)
 
   def prev(self):
     next_song = self.listbox.curselection()
     next_song = next_song[0] - 1
     next_song_name = self.listbox.get(next_song)
-    self.label.configure(text=next_song_name)
+    if next_song_name != "":
+      self.label.configure(text=next_song_name)
 
-    mixer.music.load(f"{self.muspath}\\{next_song_name}")
-    mixer.music.play()
-    mixer.music.set_volume(1)
-    self.volumeScale.set(1)
+      mixer.music.load(f"{self.muspath}\\{next_song_name}")
+      mixer.music.play()
+      mixer.music.set_volume(1)
+      self.volumeScale.set(1)
 
-    self.listbox.select_clear(0, END)
-    self.listbox.activate(next_song)
-    self.listbox.select_set(next_song)
+      self.listbox.select_clear(0, END)
+      self.listbox.activate(next_song)
+      self.listbox.select_set(next_song)
 
   def pause(self):
     if self.pauseBtn["text"] == "Пауза":
