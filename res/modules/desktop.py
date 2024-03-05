@@ -62,7 +62,10 @@ class desktop:
     selection = e.widget.curselection()
     if len(selection) > 0:
       index = selection[0]
-      self.win.config(menu=self.win.opened_programs[index].menu)
+      program = self.win.opened_programs[index]
+      self.win.config(menu=program.menu)
+      if program.hiden:
+        program.show()
 
   def hide_taskbar(self):
     """Прячет таскбар по умолчанию"""

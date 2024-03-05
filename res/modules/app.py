@@ -5,6 +5,9 @@ class app(Frame):
     super().__init__(win)
     self.win = win
     self.position:list = position
+    self.hiden = False
+    self.x = 0
+    self.y = 0
     self.start(main_func, title)
 
   def exit(self):
@@ -20,12 +23,11 @@ class app(Frame):
   
   def hide(self):
     self.place_forget()
+    self.hiden = True
   
   def show(self):
-    try:
-      self.place(self.x, self.y)
-    except:
-      self.place(relx=0.5, rely=0.5, anchor=CENTER)
+    self.place(relx=0.5, rely=0.5, anchor=CENTER)
+    self.hiden = False
 
   def start(self, main_func:str, title:str = "Программа"):
     """Выводит приложение на экран. Необходима главная функция с базовым интерфейсом программы и её заголовок."""
