@@ -10,14 +10,16 @@ class App(app):
     self.args = args
     self.muspath = win.system_path + "storage\\Music"
     self.pattern = '*.mp3'
+    self.sound = None
     if len(self.args) >= 1:
       self.muspath = args[0]
     mixer.init()
+    self.channel = mixer.find_channel()
     super().__init__(win=win, position=position, title="Музыка")
   
   def exit(self):
     """Закрывает приложение."""
-    mixer.music.stop()
+    self.sound.stop()
     self.win.programslist.delete(self.win.opened_programs.index(self))
     self.win.opened_programs.remove(self)
     self.destroy()
@@ -25,17 +27,18 @@ class App(app):
   def select(self, event=None):
     try:
       self.label.configure(text=self.listbox.get(ANCHOR))
-      mixer.music.load(f"{self.muspath}\\{self.listbox.get(ANCHOR)}")
+      self.sound = mixer.Sound(f"{self.muspath}\\{self.listbox.get(ANCHOR)}")
     except:
       self.label.configure(text=self.listbox.get(0))
-      mixer.music.load(f"{self.muspath}\\{self.listbox.get(0)}")
-    mixer.music.play()
-    mixer.music.set_volume(1)
+      self.sound = mixer.Sound(f"{self.muspath}\\{self.listbox.get(ANCHOR)}")
+
+    self.channel.play(self.sound)
+    self.channel.set_volume(1)
     self.volumeScale.set(1)
     
 
   def stop(self):
-    mixer.music.stop()
+    self.channel.stop()
     self.listbox.select_clear('active')
 
   def next(self):
@@ -45,9 +48,9 @@ class App(app):
     if next_song_name != "":
       self.label.configure(text=next_song_name)
 
-      mixer.music.load(f"{self.muspath}\\{next_song_name}")
-      mixer.music.play()
-      mixer.music.set_volume(1)
+      self.sound = mixer.Sound(f"{self.muspath}\\{next_song_name}")
+      self.channel.play(self.sound)
+      self.channel.set_volume(1)
       self.volumeScale.set(1)
 
       self.listbox.select_clear(0, END)
@@ -61,9 +64,9 @@ class App(app):
     if next_song_name != "":
       self.label.configure(text=next_song_name)
 
-      mixer.music.load(f"{self.muspath}\\{next_song_name}")
-      mixer.music.play()
-      mixer.music.set_volume(1)
+      self.sound = mixer.Sound(f"{self.muspath}\\{next_song_name}")
+      self.channel.play(self.sound)
+      self.channel.set_volume(1)
       self.volumeScale.set(1)
 
       self.listbox.select_clear(0, END)
@@ -72,14 +75,14 @@ class App(app):
 
   def pause(self):
     if self.pauseBtn["text"] == "Пауза":
-      mixer.music.pause()
+      self.channel.pause()
       self.pauseBtn.configure(text='Играть')
     else:
-      mixer.music.unpause()
+      self.channel.unpause()
       self.pauseBtn.configure(text='Пауза')
 
   def volume(self, event):
-    mixer.music.set_volume(self.volumeScale.get())
+    self.channel.set_volume(self.volumeScale.get())
 
   def main(self):
     self.main_frame.config(bg="gray20")
