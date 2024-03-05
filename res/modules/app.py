@@ -67,12 +67,17 @@ class app(Frame):
 
   def add_menu(self):
     """Добавляет меню приложения"""
-    self.placement = Menu(self.menu, tearoff=0)
-    self.placement.add_command(label="Центр", command=self.center)
+    self.app_menu = Menu(self.menu, tearoff=0)
 
-    self.menu.add_cascade(label="Расположение", menu=self.placement)
+    self.placement_menu = Menu(self.app_menu, tearoff=0)
+    self.placement_menu.add_command(label="Центр", command=self.center)
+    self.app_menu.add_cascade(label="Расположение", menu=self.placement_menu)
 
-    self.menu.add_command(label="Закрыть", command=self.exit)
+    self.app_menu.add_command(label="Скрыть", command=self.hide)
+    self.app_menu.add_command(label="Показать", command=self.show)
+    self.app_menu.add_command(label="Закрыть", command=self.exit)
+
+    self.menu.add_cascade(label="Приложение", menu=self.app_menu)
   
   def start_move_app(self, e):
     """Прячет окно программы и создает окно для перемещения, устанавливает меню приложения"""
