@@ -30,7 +30,7 @@ class App(app):
       self.sound = mixer.Sound(f"{self.muspath}\\{self.listbox.get(ANCHOR)}")
     except:
       self.label.configure(text=self.listbox.get(0))
-      self.sound = mixer.Sound(f"{self.muspath}\\{self.listbox.get(ANCHOR)}")
+      self.sound = mixer.Sound(f"{self.muspath}\\{self.listbox.get(0)}")
 
     self.channel.play(self.sound)
     self.channel.set_volume(1)
