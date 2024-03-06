@@ -23,10 +23,11 @@ class App(app):
 
   def main(self):
     self.main_frame.config(bg="gray20")
-    VideoFrame = Frame(self, bg='gray20')
+
+    VideoFrame = Frame(self.main_frame, bg='gray20')
     VideoFrame.pack()
 
-    BtnsFrame = Frame(self, bg='gray20')
+    BtnsFrame = Frame(self.main_frame, bg='gray20')
     BtnsFrame.pack()
 
     Button(BtnsFrame, text='Play', width=10, command=self.play).grid(row=0, column=0, padx=10, pady=10)

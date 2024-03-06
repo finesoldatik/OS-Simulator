@@ -25,11 +25,11 @@ class desktop:
 
     return wallpaper
   
-  def add_tags(self, x:int=90, y:int=10, tags_max:int=7):
+  def add_tags(self, x:int=90, y:int=10, tags_max_line:int=7):
     """Добавляет ярлыки, загруженные из tags.json"""
     tags_count = 0
     for name in self.tags:
-      if tags_count / tags_max == 1:
+      if tags_count % tags_max_line == 0 and tags_count != 0:
         x = 90
         y += 50
       tags_count += 1
