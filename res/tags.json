@@ -1,3 +1,4 @@
 {
-  "Калькулятор": ["base.calculator", []]
+  "Калькулятор": ["base.calculator", []],
+  "Музыка": ["base.music", []]
 }
