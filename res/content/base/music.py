@@ -15,6 +15,7 @@ class App(app):
       self.muspath = args[0]
     mixer.init()
     self.channel = mixer.find_channel()
+    self.music = {}
     super().__init__(win=win, position=position, title="Музыка")
   
   def exit(self):
@@ -27,10 +28,10 @@ class App(app):
   def select(self, event=None):
     try:
       self.label.configure(text=self.listbox.get(ANCHOR))
-      self.sound = mixer.Sound(f"{self.muspath}\\{self.listbox.get(ANCHOR)}")
+      self.sound = mixer.Sound(self.music.get(self.listbox.get(ANCHOR)))
     except:
       self.label.configure(text=self.listbox.get(0))
-      self.sound = mixer.Sound(f"{self.muspath}\\{self.listbox.get(0)}")
+      self.sound = mixer.Sound(self.music.get(self.listbox.get(0)))
 
     self.channel.play(self.sound)
     self.channel.set_volume(1)
@@ -48,7 +49,7 @@ class App(app):
     if next_song_name != "":
       self.label.configure(text=next_song_name)
 
-      self.sound = mixer.Sound(f"{self.muspath}\\{next_song_name}")
+      self.sound = mixer.Sound(self.music.get(next_song_name))
       self.channel.play(self.sound)
       self.channel.set_volume(1)
       self.volumeScale.set(1)
@@ -64,7 +65,7 @@ class App(app):
     if next_song_name != "":
       self.label.configure(text=next_song_name)
 
-      self.sound = mixer.Sound(f"{self.muspath}\\{next_song_name}")
+      self.sound = mixer.Sound(self.music.get(next_song_name))
       self.channel.play(self.sound)
       self.channel.set_volume(1)
       self.volumeScale.set(1)
@@ -122,3 +123,4 @@ class App(app):
     for root, dirs, files in os.walk(self.muspath):
       for filename in fnmatch.filter(files, self.pattern):
         self.listbox.insert(END, filename)
+        self.music[filename] = f"{root}\\{filename}"
