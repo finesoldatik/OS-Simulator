@@ -2,7 +2,7 @@ from importlib import import_module
 from os.path import dirname
 from argparse import ArgumentParser
 
-from res.modules.window import Window
+from src.window import Window
 
 if __name__ == "__main__":
   parser = ArgumentParser()

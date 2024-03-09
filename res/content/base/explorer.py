@@ -3,11 +3,10 @@ from ctypes import windll
 from os import mkdir, listdir, path, startfile
 from pathlib import Path
 
-from res.modules.app import app
-
+from res.api.app import app
 
 class App(app):
-  def __init__(self, win, position, args=[]):
+  def __init__(self, win, position, args={}):
     super().__init__(win=win, position=position, title="Проводник")
 
   def main(self):

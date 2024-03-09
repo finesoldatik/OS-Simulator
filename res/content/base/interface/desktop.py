@@ -1,6 +1,6 @@
 from tkinter import *
 
-from res.modules.desktop import desktop
+from res.api.desktop import desktop
 
 class Desktop(desktop):
   def __init__(self, win):

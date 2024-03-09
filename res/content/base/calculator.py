@@ -1,10 +1,9 @@
 from tkinter import *
 
-from res.modules.app import app
-
+from res.api.app import app
 
 class App(app):
-  def __init__(self, win, position, args=[]):
+  def __init__(self, win, position, args={}):
     self.expression = ""
     super().__init__(win=win, position=position, title="Калькулятор")
 

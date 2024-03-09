@@ -1,10 +1,10 @@
 from tkinter import *
 import tkVideoPlayer as vp
 
-from res.modules.app import app
+from res.api.app import app
 
 class App(app):
-  def __init__(self, win, position, args=[]):
+  def __init__(self, win, position, args={}):
     self.args = args
     if self.args == []:
       self.video = win.system_path + "storage\\Video\\1.mp4"

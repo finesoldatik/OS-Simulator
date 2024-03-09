@@ -3,10 +3,10 @@ import fnmatch
 import os
 from pygame import mixer
 
-from res.modules.app import app
+from res.api.app import app
 
 class App(app):
-  def __init__(self, win, position, args=[]):
+  def __init__(self, win, position, args={}):
     self.args = args
     self.muspath = win.system_path + "storage\\Music"
     self.pattern = '*.mp3'

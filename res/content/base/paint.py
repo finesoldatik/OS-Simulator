@@ -4,11 +4,10 @@ from tkinter.messagebox import showinfo
 from PIL import Image, ImageDraw
 from random import randint
 
-from res.modules.app import app
-
+from res.api.app import app
 
 class App(app):
-  def __init__(self, win, position, args=[]):
+  def __init__(self, win, position, args={}):
     self.brush_size = 10
     self.color = "black"
     self.x = 0
