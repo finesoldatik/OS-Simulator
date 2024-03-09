@@ -11,8 +11,10 @@ class App(app):
     self.muspath = win.system_path + "storage\\Music"
     self.pattern = '*.mp3'
     self.sound = None
-    if len(self.args) >= 1:
-      self.muspath = args[0]
+    if self.args != {}:
+      try:
+        self.muspath = args.get("muspath")
+      except: pass
     mixer.init()
     self.channel = mixer.find_channel()
     self.music = {}

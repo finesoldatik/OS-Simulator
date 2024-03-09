@@ -6,10 +6,10 @@ from res.api.app import app
 class App(app):
   def __init__(self, win, position, args={}):
     self.args = args
-    if self.args == []:
+    if self.args == {}:
       self.video = win.system_path + "storage\\Video\\1.mp4"
     else:
-      self.video = args[0]
+      self.video = args.get("video")
     super().__init__(win=win, position=position, title="Видео")
 
   def play(self):
