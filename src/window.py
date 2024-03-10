@@ -46,9 +46,9 @@ class Window(Tk):
   def rgb(self, rgb: List[int]) -> str:
     """Переводит из RGB формата в HEX и возвращает строку.
 
-        Parameters
-        ----------
-        rgb : List[int]
-            цвет в формате RGB (0, 0, 0)
-        """
+      Parameters
+      ----------
+      rgb : List[int]
+          цвет в формате RGB (0, 0, 0)
+    """
     return "#%02x%02x%02x" % rgb
