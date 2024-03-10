@@ -15,11 +15,13 @@ class Context:
     self.base_programs.add_command(label="Проводник", command=lambda: self.win.program_handler.start(program_import_path="base.explorer", position=[self.x, self.y]))
     self.base_programs.add_command(label="Калькулятор", command=lambda: self.win.program_handler.start(program_import_path="base.calculator", position=[self.x, self.y]))
     self.base_programs.add_command(label="Терминал", command=lambda: self.win.program_handler.start(program_import_path="base.terminal", position=[self.x, self.y]))
+    self.create.add_command(label="Ярлык", command=lambda: self.win.program_handler.start(program_import_path="base.create.tag", position=[self.x, self.y]))
 
     self.taskmenu.add_command(label="Скрыть", command=self.win.desktop.hide_taskbar)
     self.taskmenu.add_command(label="Показать", command=self.win.desktop.show_taskbar)
 
     self.context.add_cascade(label="Открыть", menu=self.base_programs)
+    self.context.add_cascade(label="Создать", menu=self.create)
     self.context.add_cascade(label="Панель задач", menu=self.taskmenu)
     self.context.add_separator()
     self.context.add_command(label="Выйти", command=quit)
