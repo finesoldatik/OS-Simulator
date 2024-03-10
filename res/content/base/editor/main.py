@@ -128,11 +128,11 @@ class App(app):
     self.path_change()
   
   def execute(self, event=None):
-    with open(os.path.dirname(__file__) + r'\executed.py', 'w', encoding='utf-8') as f:
+    with open(self.win.system_path + "res\\content\\base\\editor\\executed.py", 'w', encoding='utf-8') as f:
       f.write(self.editArea.get('1.0', END))
       f.close()
 
-    os.system('start cmd /K "python executed.py"')
+    os.system(f'start cmd /K python "{self.win.system_path}res\\content\\base\\editor\\executed.py"')
 
   def changes(self, event=None):
     if self.editArea.get('1.0', END) == self.previousText:
