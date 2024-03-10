@@ -56,7 +56,7 @@ class App(app):
     self.font = self.settings.get('font')
     self.tabs = 0
 
-    self.current_path = StringVar(win, Path.cwd(), 'current_path')
+    self.current_path = StringVar(win, f"{win.system_path}res\\content\\", "current_path")
     self.current_path.trace('w', self.path_change)
 
     super().__init__(win=win, position=position, title="Редактор")
@@ -96,7 +96,7 @@ class App(app):
   def go_back(self, event=None):
     new_path = Path(self.current_path.get()).parent
     self.current_path.set(new_path)
-  
+
   def create(self, type_):
     self.create_root = Frame(self.main_frame)
     self.create_root.place(relx=0.5, rely=0.5, anchor=CENTER)
@@ -109,24 +109,29 @@ class App(app):
       self.filename = Entry(self.create_root, bg='gray20', insertbackground=self.normal, font=self.font, fg=self.normal)
       self.filename.grid(column=0, pady=3)
       submit = btn(self.create_root, text="Создать", command=self.new_file)
-      submit.root.grid(pady=1)
+      submit.root.grid(column=0, pady=1)
+      cancelbtn = btn(self.create_root, text="Отмена", command=lambda: self.create_root.destroy())
+      cancelbtn.root.grid(padx=10, pady=1)
+
     elif type_ == 'folder':
       Label(self.create_root, text='Введите название новой папки', font=self.font, fg=self.normal, bg="gray10").grid()
       self.filename = Entry(self.create_root, bg='gray20', insertbackground=self.normal, font=self.font, fg=self.normal)
       self.filename.grid(column=0, pady=3)
       submit = btn(self.create_root, text="Создать", command=self.new_folder)
-      submit.root.grid(pady=1)
-      
+      submit.root.grid(column=0, pady=1)
+      cancelbtn = btn(self.create_root, text="Отмена", command=lambda: self.create_root.destroy())
+      cancelbtn.root.grid(padx=10, pady=1)
+
   def new_file(self):
     open(os.path.join(self.current_path.get(), self.filename.get()), 'w').close()
     self.create_root.destroy()
     self.path_change()
-    
+
   def new_folder(self):
     os.mkdir(os.path.join(self.current_path.get(), self.filename.get()))
     self.create_root.destroy()
     self.path_change()
-  
+
   def execute(self, event=None):
     with open(self.win.system_path + "res\\content\\base\\editor\\executed.py", 'w', encoding='utf-8') as f:
       f.write(self.editArea.get('1.0', END))
@@ -197,7 +202,7 @@ print([randint(1, 20) for i in range(10)])
       with open(path, "w", encoding="utf-8") as f:
         f.write(self.editArea.get("1.0", END))
     except: showerror("Выберите файл для сохранения!", "Выберите файл в проводнике, в который хотите сохранить изменения!")
-  
+
   def main(self):
     filemenu = Menu(self.menu, tearoff=0)
     filemenu.add_command(label="Новый", command=self.new)
@@ -205,7 +210,7 @@ print([randint(1, 20) for i in range(10)])
     filemenu.add_command(label="Сохранить", command=self.save)
     filemenu.add_command(label="Сохранить как...")
     filemenu.add_command(label="Выход", command=lambda: self.exit)
-    
+
     self.menu.add_cascade(label="Файл", menu=filemenu)
     self.menu.add_command(label="Запуск", command=self.execute)
 
