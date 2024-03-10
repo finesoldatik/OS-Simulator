@@ -8,11 +8,11 @@ if __name__ == "__main__":
   parser = ArgumentParser()
   parser.add_argument("-i", "--interface", dest="interface", type=str, help="The name of the interface that the program will run from.", default="base")
   args = parser.parse_args()
-  name = args.interface
-  print(f"\nlaunching with the \"{name}\" package.")
+  package = args.interface
+  print(f"\nlaunching with the \"{package}\" package.")
   try:
-    context = import_module(f"res.content.{name}.interface.context")
-    desktop = import_module(f"res.content.{name}.interface.desktop")
+    context = import_module(f"res.content.{package}.interface.context")
+    desktop = import_module(f"res.content.{package}.interface.desktop")
     system_path = f"{dirname(__file__)}\\"
     win = Window(context=context.Context, desktop=desktop.Desktop, system_path=system_path)
   except Exception as ex:
