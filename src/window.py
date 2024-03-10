@@ -1,5 +1,5 @@
 from tkinter import *
-import typing
+from typing import List
 
 from res.api.handlers import ProcessHandler, ProgramHandler
 
@@ -37,14 +37,13 @@ class Window(Tk):
     # Запуск стартовых процессов
     ProcessHandler.run_startup(self)
 
-    # 11111
     self.desktop = desktop(self)
     self.context = context(self)
     self.desktop.add_context()
     self.programslist = self.desktop.programslist
     self.program_handler = ProgramHandler(win=self, opened_programs=self.opened_programs, programslist=self.programslist)
 
-  def rgb(self, rgb: typing.List[int]) -> str:
+  def rgb(self, rgb: List[int]) -> str:
     """Переводит из RGB формата в HEX и возвращает строку.
 
         Parameters
