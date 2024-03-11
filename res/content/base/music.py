@@ -64,8 +64,14 @@ class App(app):
     self.volumeScale.set(1)
 
     self.listbox.select_clear(0, END)
-    self.listbox.activate(next_song)
-    self.listbox.select_set(next_song)
+    try:
+      self.listbox.activate(next_song)
+    except:
+      self.listbox.activate(0)
+    try:
+      self.listbox.select_set(next_song)
+    except:
+      self.listbox.select_set(0)
 
   def prev(self):
     try:
@@ -87,8 +93,14 @@ class App(app):
     self.volumeScale.set(1)
 
     self.listbox.select_clear(0, END)
-    self.listbox.activate(next_song)
-    self.listbox.select_set(next_song)
+    try:
+      self.listbox.activate(next_song)
+    except:
+      self.listbox.activate(0)
+    try:
+      self.listbox.select_set(next_song)
+    except:
+      self.listbox.select_set(0)
       
 
   def pause(self):
