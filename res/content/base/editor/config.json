@@ -1,53 +1,35 @@
 {
-    "settings": {
-        "normal": "#eaeaea",
-        "number": "#4275f5",
-        "bracket": "#ebf224",
-        "class": "#19e37e",
-        "constant": "#1948e3",
-        "keywords": "#ea5f5f",
-        "comments": "#5feaa5",
-        "string": "#eaa25f",
-        "function": "#5fd3ea",
-        "background": "#2a2a2a",
-        "font": "Consolas 15"
-    },
-    "repl": [
-        [
-            "(^| |\\(|\\[|\\{|\\=|\\>|\\<)(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield|/|\\*|\\+|\\-|\\=|\\>|\\<)($| |\\(|\\[|\\{|\\=|\\>|\\<)",
-            "#ea5f5f"
-        ],
-        [
-            "(^| |\\(|\\[|\\{|\\=|\\>|\\<)(print|eval|range|randint)($| |\\(|\\[|\\{|\\=|\\>|\\<)",
-            "#5fd3ea"
-        ],
-        [
-            "(^| |\\(|\\[|\\{|\\=|\\>|\\<)(random|os|json|tkinter|sys|app|desktop|handlers)($| |\\(|\\[|\\{|\\=|\\>|\\<)",
-            "#19e37e"
-        ],
-        [
-            "\\d+",
-            "#4275f5"
-        ],
-        [
-            "[(){}\\[\\]]",
-            "#ebf224"
-        ],
-        [
-            "\".*?\"",
-            "#eaa25f"
-        ],
-        [
-            "'.*?'",
-            "#eaa25f"
-        ],
-        [
-            "#.*?$",
-            "#5feaa5"
-        ],
-        [
-            "[A-Z]{2}",
-            "#1948e3"
-        ]
-    ]
+	"settings": {
+		"normal": "#eaeaea",
+		"number": "#4275f5",
+		"bracket": "#ebf224",
+		"class": "#19e37e",
+		"constant": "#1948e3",
+		"keywords": "#ea5f5f",
+		"comments": "#5feaa5",
+		"string": "#eaa25f",
+		"function": "#5fd3ea",
+		"background": "#2a2a2a",
+		"font": "Consolas 15"
+	},
+	"repl": [
+		[
+			"(^| |\\(|\\[|\\{|\\=|\\>|\\<)(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield|/|\\*|\\+|\\-|\\=|\\>|\\<)($| |\\(|\\[|\\{|\\=|\\>|\\<)",
+			"#ea5f5f"
+		],
+		[
+			"(^| |\\(|\\[|\\{|\\=|\\>|\\<)(print|eval|range|randint)($| |\\(|\\[|\\{|\\=|\\>|\\<)",
+			"#5fd3ea"
+		],
+		[
+			"(^| |\\(|\\[|\\{|\\=|\\>|\\<)(random|os|json|tkinter|sys|app|desktop|handlers)($| |\\(|\\[|\\{|\\=|\\>|\\<)",
+			"#19e37e"
+		],
+		["\\d+", "#4275f5"],
+		["[(){}\\[\\]]", "#ebf224"],
+		["\".*?\"", "#eaa25f"],
+		["'.*?'", "#eaa25f"],
+		["#.*?$", "#5feaa5"],
+		["[A-Z]{2}", "#1948e3"]
+	]
 }

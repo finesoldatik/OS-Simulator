@@ -45,36 +45,51 @@ class App(app):
     self.listbox.select_clear('active')
 
   def next(self):
-    next_song = self.listbox.curselection()
-    next_song = next_song[0] + 1
-    next_song_name = self.listbox.get(next_song)
+    try:
+      next_song = self.listbox.curselection()
+      next_song = next_song[0] + 1
+      next_song_name = self.listbox.get(next_song)
+    except:
+      next_song_name = ""
+
     if next_song_name != "":
       self.label.configure(text=next_song_name)
-
       self.sound = mixer.Sound(self.music.get(next_song_name))
-      self.channel.play(self.sound)
-      self.channel.set_volume(1)
-      self.volumeScale.set(1)
+    else:
+      self.label.configure(text=self.listbox.get(0))
+      self.sound = mixer.Sound(self.music.get(self.listbox.get(0)))
 
-      self.listbox.select_clear(0, END)
-      self.listbox.activate(next_song)
-      self.listbox.select_set(next_song)
+    self.channel.play(self.sound)
+    self.channel.set_volume(1)
+    self.volumeScale.set(1)
+
+    self.listbox.select_clear(0, END)
+    self.listbox.activate(next_song)
+    self.listbox.select_set(next_song)
 
   def prev(self):
-    next_song = self.listbox.curselection()
-    next_song = next_song[0] - 1
-    next_song_name = self.listbox.get(next_song)
+    try:
+      next_song = self.listbox.curselection()
+      next_song = next_song[0] - 1
+      next_song_name = self.listbox.get(next_song)
+    except:
+      next_song_name = ""
+
     if next_song_name != "":
       self.label.configure(text=next_song_name)
-
       self.sound = mixer.Sound(self.music.get(next_song_name))
-      self.channel.play(self.sound)
-      self.channel.set_volume(1)
-      self.volumeScale.set(1)
+    else:
+      self.label.configure(text=self.listbox.get(0))
+      self.sound = mixer.Sound(self.music.get(self.listbox.get(0)))
 
-      self.listbox.select_clear(0, END)
-      self.listbox.activate(next_song)
-      self.listbox.select_set(next_song)
+    self.channel.play(self.sound)
+    self.channel.set_volume(1)
+    self.volumeScale.set(1)
+
+    self.listbox.select_clear(0, END)
+    self.listbox.activate(next_song)
+    self.listbox.select_set(next_song)
+      
 
   def pause(self):
     if self.pauseBtn["text"] == "Пауза":
@@ -111,7 +126,7 @@ class App(app):
     self.pauseBtn = Button(self.main_frame, text='Пауза', width=7, bg='gray23', fg='yellow', font=('Consolas', 14), borderwidth=0, command=self.pause)
     self.pauseBtn.pack(pady=15, in_=top, side=LEFT)
 
-    nextBtn = Button(self.main_frame, text='После', width=7, bg='gray23', fg='blue', font=('Consolas', 14), borderwidth=0, command=next)
+    nextBtn = Button(self.main_frame, text='После', width=7, bg='gray23', fg='blue', font=('Consolas', 14), borderwidth=0, command=self.next)
     nextBtn.pack(pady=15, in_=top, side=LEFT)
 
     volumeFrame = Frame(self.main_frame, bg='gray20')

@@ -1,4 +1,5 @@
 {
-  "Калькулятор": ["base.calculator", {}],
-  "Музыка": ["base.music", {}]
+	"Калькулятор": ["base.calculator", {}],
+	"Музыка": ["base.music", {}],
+	"Редактор": ["base.editor.main", {}]
 }
