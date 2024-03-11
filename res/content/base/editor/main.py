@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 
 from res.api.app import app
+from res.api.handlers import JSONHandler
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
 
@@ -22,30 +23,13 @@ class btn:
 
 class App(app):
   def __init__(self, win, position, args={}):
-    self.settings = {
-      "normal": "#eaeaea",
-      "number": "#4275f5",
-      "bracket": "#ebf224",
-      "class": "#19e37e",
-      "constant": "#1948e3",
-      "keywords": "#ea5f5f",
-      "comments": "#5feaa5",
-      "string": "#eaa25f",
-      "function": "#5fd3ea",
-      "background": "#2a2a2a",
-      "font": "Consolas 15"
-    }
-    self.repl = [
-      ['(^| |\(|\[|\{|\=|\>|\<)(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield|/|\*|\+|\-|\=|\>|\<)($| |\(|\[|\{|\=|\>|\<)', "#ea5f5f"], #keyword
-      ['(^| |\(|\[|\{|\=|\>|\<)(print|eval|range|randint)($| |\(|\[|\{|\=|\>|\<)', "#5fd3ea"], #function
-      ['(^| |\(|\[|\{|\=|\>|\<)(random|os|json)($| |\(|\[|\{|\=|\>|\<)', "#19e37e"], #class
-      ['\d+', "#4275f5"], #num
-      ['[(){}\[\]]', "#ebf224"], #bracket
-      ['".*?"', "#eaa25f"], #string
-      ['\'.*?\'', "#eaa25f"], #string
-      ['#.*?$', "#5feaa5"], #comments
-      ['[A-Z]{2}', "#1948e3"], #constant
-    ]
+    self.win = win
+    if not os.path.exists(f"{win.system_path}\\res\\content\\base\\editor\\config.json"):
+      self.create_config()
+    self.data = JSONHandler.read(f"{win.system_path}\\res\\content\\base\\editor\\config.json")
+    self.settings = self.data.get("settings")
+    self.repl = self.data.get("repl")
+
     self.previousText = ''
     self.normal = self.settings.get('normal')
     self.keywords = self.settings.get('keywords')
@@ -60,15 +44,46 @@ class App(app):
     self.current_path.trace('w', self.path_change)
 
     super().__init__(win=win, position=position, title="Редактор")
+
+  def create_config(self):
+    data = {
+      "settings": {
+        "normal": "#eaeaea",
+        "number": "#4275f5",
+        "bracket": "#ebf224",
+        "class": "#19e37e",
+        "constant": "#1948e3",
+        "keywords": "#ea5f5f",
+        "comments": "#5feaa5",
+        "string": "#eaa25f",
+        "function": "#5fd3ea",
+        "background": "#2a2a2a",
+        "font": "Consolas 15"
+      },
+      "repl": [
+        ['(^| |\(|\[|\{|\=|\>|\<)(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield|/|\*|\+|\-|\=|\>|\<)($| |\(|\[|\{|\=|\>|\<)', "#ea5f5f"], #keyword
+        ['(^| |\(|\[|\{|\=|\>|\<)(print|eval|range|randint)($| |\(|\[|\{|\=|\>|\<)', "#5fd3ea"], #function
+        ['(^| |\(|\[|\{|\=|\>|\<)(random|os|json|tkinter|sys|app|desktop|handlers)($| |\(|\[|\{|\=|\>|\<)', "#19e37e"], #modules
+        ['\d+', "#4275f5"], #num
+        ['[(){}\[\]]', "#ebf224"], #bracket
+        ['".*?"', "#eaa25f"], #string
+        ['\'.*?\'', "#eaa25f"], #string
+        ['#.*?$', "#5feaa5"], #comments
+        ['[A-Z]{2}', "#1948e3"], #constant
+      ]
+    }
+    JSONHandler.write(f"{self.win.system_path}\\res\\content\\base\\editor\\config.json", data)
   
   def path_change(self, *event):
-    directory = os.listdir(self.current_path.get())
-    self.files.delete(0, END)
+    try:
+      directory = os.listdir(self.current_path.get())
+      self.files.delete(0, END)
 
-    for file in directory:
-      self.files.insert(0, file)
+      for file in directory:
+        self.files.insert(0, file)
 
-    self.files.insert(0, "../")
+      self.files.insert(0, "../")
+    except: pass
 
   def change_path_by_click(self, event=None):
     picked = self.files.get(self.files.curselection()[0])
