@@ -12,16 +12,7 @@ class App(app):
       self.video = args.get("video")
     super().__init__(win=win, position=position, title="Видео")
 
-  def play(self):
-    self.videoplayer.play()
-
-  def pause(self):
-    self.videoplayer.pause()
-
-  def stop(self):
-    self.videoplayer.stop()
-
-  def main(self):
+  def content(self):
     self.main_frame.config(bg="gray20")
 
     VideoFrame = Frame(self.main_frame, bg='gray20')
@@ -37,3 +28,12 @@ class App(app):
     self.videoplayer = vp.TkinterVideo(VideoFrame, scaled=True)
     self.videoplayer.load(self.video)
     self.videoplayer.pack(ipadx=160, ipady=80, pady=10)
+
+  def play(self):
+    self.videoplayer.play()
+
+  def pause(self):
+    self.videoplayer.pause()
+
+  def stop(self):
+    self.videoplayer.stop()

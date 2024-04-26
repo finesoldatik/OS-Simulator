@@ -9,7 +9,7 @@ class App(app):
   def __init__(self, win, position, args={}):
     super().__init__(win=win, position=position, title="Проводник")
 
-  def main(self):
+  def content(self):
     windll.shcore.SetProcessDpiAwareness(True)
 
     self.main_frame.grid_columnconfigure(1, weight=1)

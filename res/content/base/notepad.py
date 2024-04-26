@@ -8,6 +8,20 @@ class App(app):
   def __init__(self, win, position, args={}):
     self.filename = NONE
     super().__init__(win=win, position=position, title="Блокнот")
+  
+  def content(self):
+    self.text = Text(self.main_frame, width=50, height=30, wrap="word")
+    scrollb = Scrollbar(self.main_frame, orient=VERTICAL, command=self.text.yview)
+    scrollb.pack(side="right", fill="y")
+    self.text.configure(yscrollcommand=scrollb.set)
+
+    self.text.pack()
+    fileMenu = Menu(self.menu, tearoff=0)
+    fileMenu.add_command(label="Новый", command=self.new_file)
+    fileMenu.add_command(label="Открыть", command=self.open_file)
+    fileMenu.add_command(label="Сохранить", command=self.save_file)
+    fileMenu.add_command(label="Сохранить как", command=self.save_as)
+    self.menu.add_cascade(label="Файл", menu=fileMenu)
 
   def new_file(self):
     self.filename = "Untitled"
@@ -34,17 +48,3 @@ class App(app):
     data = inp.read()
     self.text.delete('1.0', END)
     self.text.insert('1.0', data)
-
-  def main(self):
-    self.text = Text(self.main_frame, width=50, height=30, wrap="word")
-    scrollb = Scrollbar(self.main_frame, orient=VERTICAL, command=self.text.yview)
-    scrollb.pack(side="right", fill="y")
-    self.text.configure(yscrollcommand=scrollb.set)
-
-    self.text.pack()
-    fileMenu = Menu(self.menu, tearoff=0)
-    fileMenu.add_command(label="Новый", command=self.new_file)
-    fileMenu.add_command(label="Открыть", command=self.open_file)
-    fileMenu.add_command(label="Сохранить", command=self.save_file)
-    fileMenu.add_command(label="Сохранить как", command=self.save_as)
-    self.menu.add_cascade(label="Файл", menu=fileMenu)

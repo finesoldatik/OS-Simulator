@@ -54,7 +54,7 @@ class app(Frame):
         перемещает окно приложения
             (выполняется автоматически)
   """
-  def __init__(self, win, position: list=[CENTER, CENTER], main_func: str="main", title: str="Программа"):
+  def __init__(self, win, position: list=[CENTER, CENTER], main_func: str="content", title: str="Приложение"):
     super().__init__(win)
     self.win = win
     self.position: list = position

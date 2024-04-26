@@ -7,6 +7,13 @@ class App(app):
   def __init__(self, win, position, args={}):
     self.output = ""
     super().__init__(win=win, position=position, title="Терминал")
+  
+  def content(self):
+    self.output_label = Label(self.main_frame)
+    self.output_label.pack()
+    self.entry = Entry(self.main_frame)
+    self.entry.pack()
+    self.entry.bind("<Return>", self.cmd)
 
   def cmd(self, e):
     cmd = self.entry.get()
@@ -29,11 +36,3 @@ class App(app):
         self.output = programs
       if self.output != "":
         self.output_label.config(text=self.output)
-
-  def main(self):
-    self.output_label = Label(self.main_frame)
-    self.output_label.pack()
-    self.entry = Entry(self.main_frame)
-    self.entry.pack()
-    self.entry.bind("<Return>", self.cmd)
-

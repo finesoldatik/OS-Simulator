@@ -14,7 +14,7 @@ class App(app):
     self.y = 0
     super().__init__(win=win, position=position, title="Холст")
 
-  def main(self):
+  def content(self):
     self.main_frame.columnconfigure(6, weight=1)
     self.main_frame.rowconfigure(2, weight=1)
 
